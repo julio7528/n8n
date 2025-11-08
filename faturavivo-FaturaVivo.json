@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-08T19:38:41.000Z",
+  "updatedAt": "2025-11-08T20:37:56.000Z",
   "createdAt": "2025-11-07T21:34:42.855Z",
   "id": "xeK6OjKJPRQ3N0si",
   "name": "FaturaVivo",
@@ -68,7 +68,7 @@
         "messages": {
           "values": [
             {
-              "content": "=<prompt framework='TIDE'><tarefa>You are a financial assistant whose task is to process bill information.</tarefa><input>{{ $json.html }}</input><detalhe>Extract only the following specific pieces of information from the email: the bill's due date, the invoice number, the total amount due, the Pix copy-paste key for payment, and the barcode for payment. It is critical that no other information is included in the output.</detalhe><expectativa>Generate a message using only the extracted information, strictly following this exact template. Replace the bracketed placeholders with the corresponding data found in the email. The final output must be in Portuguese (pt-br). Fatura da Vivo - Vencimento {Data de Vencimento}- Fatura Número {Número da Fatura}- Valor {Valor Total}- Pagamento pelo Pix copia e cola {Chave Pix}- Código de barras {Código de Barras}</expectativa><languageoutput>pt-br</languageoutput></prompt>"
+              "content": "=<prompt framework='TIDE'><tarefa>You are the financial assistant whose task is to process bill information.</tarefa><input>{{ $json.html }}</input><detalhe>Extract only the following specific pieces of information from the email: the bill's due date, the invoice number, the total amount due, the Pix copy-paste key for payment, and the barcode for payment. It is critical that no other information is included in the output.</detalhe><expectativa>Generate a message using only the extracted information, strictly following this exact template. Replace the bracketed placeholders with the corresponding data found in the email. The final output must be in Portuguese (pt-br). Fatura da Vivo - Vencimento {Data de Vencimento}- Fatura Número {Número da Fatura}- Valor {Valor Total}- Pagamento pelo Pix copia e cola {Chave Pix}- Código de barras {Código de Barras}</expectativa><languageoutput>pt-br</languageoutput></prompt>"
             }
           ]
         },
@@ -281,7 +281,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "09b92306-89c4-4371-bdcf-2ef9ce709220",
+  "versionId": "f56a6153-25cf-484b-aed6-5e02f9ef8e90",
   "triggerCount": 1,
   "shared": [
     {
