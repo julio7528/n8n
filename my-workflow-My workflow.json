@@ -1,0 +1,67 @@
+{
+  "updatedAt": "2025-11-05T00:55:05.000Z",
+  "createdAt": "2025-11-04T14:35:53.719Z",
+  "id": "3FjxtC3iyTtNYa7t",
+  "name": "My workflow",
+  "active": false,
+  "isArchived": true,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "da866729-1f05-442e-96d0-bb183e11a95e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://www.skidrowreloaded.com/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f9bb53a4-5988-4f4c-b558-ffadfab5ab88",
+      "name": "HTTP Request",
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "c023f67f-a075-4c7e-942f-c6aa8ed5a435",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-04T14:35:53.758Z",
+      "createdAt": "2025-11-04T14:35:53.758Z",
+      "role": "workflow:owner",
+      "workflowId": "3FjxtC3iyTtNYa7t",
+      "projectId": "TlfmJa4WqVZC43Rf"
+    }
+  ],
+  "tags": []
+}
