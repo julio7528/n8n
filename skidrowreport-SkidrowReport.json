@@ -1,0 +1,589 @@
+{
+  "updatedAt": "2025-11-08T19:38:59.000Z",
+  "createdAt": "2025-11-07T09:51:37.705Z",
+  "id": "Cp6nud79FzhuVOSn",
+  "name": "SkidrowReport",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://www.skidrowreloaded.com/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        256,
+        -352
+      ],
+      "id": "00dbe3fd-8a08-45a7-969a-e96e5f65a00d",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "title",
+              "cssSelector": "h2",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        -352
+      ],
+      "id": "18927e26-4dff-4375-ac43-ead176e472bf",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 18
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        32,
+        -352
+      ],
+      "id": "ee34b753-e694-412d-b516-02f6f59ceb0d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "const titles = $input.first().json.title;\nreturn titles.map(title => ({ json: { title } }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        -352
+      ],
+      "id": "be7c58d0-2c30-4ad5-8f0d-9c64171ab280",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        -352
+      ],
+      "id": "81969ab3-9d31-4b99-b618-4ecfd3c375c0",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtém o input do item anterior\nconst input = $input.first().json.title;\n\n// Usa regex para extrair o texto entre [ e ]\nconst match = input.match(/\\[(.*?)\\]/);\n\n// Retorna o link extraído\nreturn {\n  link: match ? match[1] : null\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1152,
+        -352
+      ],
+      "id": "5c3af469-87a8-4e93-832a-70ef58c4956d",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.link }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1376,
+        -352
+      ],
+      "id": "358fa876-4018-4e05-899b-a289a3625845",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "title",
+              "cssSelector": "p",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1600,
+        -352
+      ],
+      "id": "e0c42bd1-c604-483b-a5e3-175276babb97",
+      "name": "HTML1"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "RiFPjaNGxGLUiahB",
+          "mode": "list",
+          "cachedResultName": "skidrow",
+          "cachedResultUrl": "/projects/TlfmJa4WqVZC43Rf/datatables/RiFPjaNGxGLUiahB"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.title[13] }}",
+            "genre": "={{ $json.title[11] }}",
+            "description": "={{ $json.title[10] }}",
+            "linkskidrow": "={{ $('Code in JavaScript1').item.json.link }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "genre",
+              "displayName": "genre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "linkskidrow",
+              "displayName": "linkskidrow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        -288
+      ],
+      "id": "94677d4b-af80-4885-917b-dc7930f0b252",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "RiFPjaNGxGLUiahB",
+          "mode": "list",
+          "cachedResultName": "skidrow",
+          "cachedResultUrl": "/projects/TlfmJa4WqVZC43Rf/datatables/RiFPjaNGxGLUiahB"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "condition": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        -720
+      ],
+      "id": "fbdd7bd6-667f-447d-9359-ac76c6ec5c6a",
+      "name": "Get row(s)",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        -720
+      ],
+      "id": "76423efb-986c-4aa3-9764-2342ff1000cf",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1600,
+        -720
+      ],
+      "id": "2a7b9eca-d2bc-4212-9d39-876c1b542273",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<prompt framework='TIDE'>\n  <task>Generate a structured report for a video game based on provided data. All output must be in Brazilian Portuguese regardless of the input language.</task>\n  <input>\n    <game_data_field>The string value provided by the external system variable `{{ $('Remove Duplicates').item.json.genre }}`. This string is expected to contain both the game's title and its genre, potentially separated by a delimiter like \" - \". The input may be in English or any other language.</game_data_field>\n    <game_description_field>The string value provided by the external system variable `{{ $json.description }}`. The input may be in English or any other language.</game_description_field>\n    <skidrow_link_field>The URL string provided by the external system variable `{{ $json.linkskidrow }}`.</skidrow_link_field>\n  </input>\n  <detail>\n    <structure>The report must have the following labeled sections: \"Título\", \"Gênero\", \"Descrição\", \"Link Skidrow\", \"Link YouTube\". Each label should be followed by a colon and then the corresponding content on the same line. There should be a newline after each entry.</structure>\n    ontent_t_for_title>Extract the game title from the `game_data_field`. If the format is \"Game Title - Genre\", use \"Game Title\". If the format is only a genre, infer a title or state \"Título Desconhecido\" if no title can be reasonably inferred. Keep the original game title without translation.</content_for_title>\n    <content_for_genre>Extract the genre from the `game_data_field`. If the format is \"Game Title - Genre\", use \"Genre\". If the format is only a genre, use that as the genre. If the genre is in English, translate it to Brazilian Portuguese (e.g., \"Action\" becomes \"Ação\", \"Adventure\" becomes \"Aventura\", \"RPG\" stays \"RPG\").</content_for_genre>\n    ontent_foror_description>Use the content of `game_description_field`. If the description is in English or another language, translate it to natural Brazilian Portuguese. Preserve the meaning and tone of the original description.</content_for_description>\n    ontent_t_for_skidrow_link>Use the exact URL from `skidrow_link_field`.</content_for_skidrow_link>\n    ontent_for_r_youtube_link>Construct a YouTube search URL using the extracted \"Título\". The format should be `https://www.youtube.com/results?search_query=[Game Title]`. Replace spaces in the game title with `+` for the URL. Ensure the game title used for the search is the one extracted for the \"Título\" field.</content_for_youtube_link>\n    <language>All output text, including labels and content, must be strictly in Brazilian Portuguese (pt-br). Input data may be in any language (including English), but all output must be translated and formatted in Brazilian Portuguese. Game titles should remain in their original form, but genres and descriptions must be translated to Brazilian Portuguese.</language>\n    <format_consistency>The report structure must be strictly maintained without any deviations, following the \"Label: Content\" pattern for each field.</format_consistency>\n  </detail>\n  <expectation>A coherent, well-formatted text report in Brazilian Portuguese, strictly adhering to the specified structure and content rules, ready for direct display without any introductory or concluding remarks. All content must be in Brazilian Portuguese regardless of the input language, with game titles preserved in their original form, genres translated, and descriptions fully translated to natural Brazilian Portuguese.</expectation>\n  <languageoutput>Portuguese Brazilian. The entire output must be in Brazilian Portuguese (pt-br), including all text except for the original game titles. If input data is in English or any other language, translate genres and descriptions to Brazilian Portuguese while maintaining the game title in its original form.</languageoutput>\n</prompt>\n",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1824,
+        -752
+      ],
+      "id": "53ae6633-ed1f-4459-9357-65f556f6a15a",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        -528
+      ],
+      "id": "d537ea1f-34e1-4e2b-9ad5-7d4604ccc64e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "XFoPJMb6fDnItKib",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "=default",
+        "chatId": "=5516982316520@c.us",
+        "reply_to": "5516982316520@c.us",
+        "text": "={{ $json.text }}",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-waha.WAHA",
+      "typeVersion": 202411,
+      "position": [
+        2176,
+        -640
+      ],
+      "id": "f3723862-1d4e-4e2c-b074-6c2b4654b3cc",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "ASFsAIK5P6jCIPjx",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "RiFPjaNGxGLUiahB",
+          "mode": "list",
+          "cachedResultName": "skidrow",
+          "cachedResultUrl": "/projects/TlfmJa4WqVZC43Rf/datatables/RiFPjaNGxGLUiahB"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "condition": "gt",
+              "keyValue": "0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        -1040
+      ],
+      "id": "fa9615b3-3977-4e30-b9fa-2fc4ee16c7ff",
+      "name": "Delete row(s)"
+    }
+  ],
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTML1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML1": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Delete row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "16320cdc-b9b0-4747-b2dc-5fdf29bbd720",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2025-11-07T09:51:37.718Z",
+      "createdAt": "2025-11-07T09:51:37.718Z",
+      "role": "workflow:owner",
+      "workflowId": "Cp6nud79FzhuVOSn",
+      "projectId": "TlfmJa4WqVZC43Rf"
+    }
+  ],
+  "tags": [
+    {
+      "updatedAt": "2025-11-08T19:38:39.715Z",
+      "createdAt": "2025-11-08T19:38:39.715Z",
+      "id": "DFElANMVY5yZKTlq",
+      "name": "Wpp"
+    },
+    {
+      "updatedAt": "2025-11-08T19:38:57.180Z",
+      "createdAt": "2025-11-08T19:38:57.180Z",
+      "id": "H0IcjdDjMJkvPIsu",
+      "name": "Skidrow"
+    },
+    {
+      "updatedAt": "2025-11-08T19:38:50.208Z",
+      "createdAt": "2025-11-08T19:38:50.208Z",
+      "id": "ru8UNIB7QgxmVbOo",
+      "name": "Gemini"
+    }
+  ]
+}
