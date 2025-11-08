@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-08T20:42:51.000Z",
+  "updatedAt": "2025-11-08T20:52:49.000Z",
   "createdAt": "2025-11-08T19:31:34.039Z",
   "id": "rQpVJ8k0MyYYsxoG",
   "name": "BackupFLows",
@@ -19,7 +19,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
         -336,
-        112
+        208
       ],
       "typeVersion": 1.2
     },
@@ -33,7 +33,7 @@
       "type": "n8n-nodes-base.n8n",
       "position": [
         336,
-        112
+        208
       ],
       "typeVersion": 1,
       "credentials": {
@@ -59,7 +59,7 @@
       "type": "n8n-nodes-base.aggregate",
       "position": [
         112,
-        112
+        208
       ],
       "typeVersion": 1
     },
@@ -84,7 +84,7 @@
       "type": "n8n-nodes-base.github",
       "position": [
         -112,
-        112
+        208
       ],
       "webhookId": "354d699e-44b0-4444-9d31-af7fd4ff5561",
       "typeVersion": 1,
@@ -119,7 +119,7 @@
       "type": "n8n-nodes-base.github",
       "position": [
         1456,
-        16
+        88
       ],
       "webhookId": "27218087-8df7-474d-a39f-70cfa9c34ec8",
       "typeVersion": 1,
@@ -153,7 +153,7 @@
       "type": "n8n-nodes-base.github",
       "position": [
         1456,
-        208
+        328
       ],
       "webhookId": "ce4b561b-acb9-4cd8-b76f-4928dada9674",
       "typeVersion": 1,
@@ -182,7 +182,7 @@
       "type": "n8n-nodes-base.if",
       "position": [
         1232,
-        112
+        208
       ],
       "typeVersion": 1
     },
@@ -199,7 +199,7 @@
       "type": "n8n-nodes-base.convertToFile",
       "position": [
         560,
-        112
+        208
       ],
       "typeVersion": 1.1
     },
@@ -213,7 +213,7 @@
       "type": "n8n-nodes-base.extractFromFile",
       "position": [
         784,
-        112
+        208
       ],
       "typeVersion": 1
     },
@@ -228,8 +228,8 @@
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -176,
-        32
+        -182,
+        116
       ],
       "typeVersion": 1
     },
@@ -258,7 +258,7 @@
       "type": "n8n-nodes-base.set",
       "position": [
         1008,
-        112
+        208
       ],
       "typeVersion": 3.4
     },
@@ -273,16 +273,16 @@
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        288,
-        32
+        282,
+        116
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
         "content": "### Commit + edit/create files if needed",
-        "height": 380,
-        "width": 940,
+        "height": 668,
+        "width": 1132,
         "color": 4
       },
       "id": "b20c476d-625e-459b-b91e-0630535846f7",
@@ -290,7 +290,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         944,
-        -16
+        -96
       ],
       "typeVersion": 1
     },
@@ -341,7 +341,7 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        1664,
+        1680,
         16
       ],
       "id": "881471d4-4b05-49c3-bb83-5fd81d574fa6",
@@ -394,8 +394,8 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1,
       "position": [
-        1664,
-        208
+        1680,
+        400
       ],
       "id": "fde6b534-fed1-4c7d-aaab-674162e814bb",
       "name": "Insert row",
@@ -421,8 +421,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        2000,
-        112
+        1904,
+        208
       ],
       "id": "d78109a4-4a98-4567-98b3-a827b0cc11f1",
       "name": "Aggregate1"
@@ -430,13 +430,14 @@
     {
       "parameters": {
         "promptType": "define",
+        "text": "=Input: {{ $json.createdAt }} e {{ $json.date }} e {{ $json.name }} \nDefinição: são tres arrays que foram atualizados. São arquivos que foram criados ou feito upload para o github. \nProcesso: Preciso de um relatorio simples avisando que afoi atualizado ou criado no github.\nOutput: Aja como um analista que cuida dos arquivos do github e apresente o que aconteceu.\nFormato: Resumo do que aconteceu, Arquivos Afetados, Datas que ocorreram.",
         "batching": {}
       },
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        2416,
-        112
+        2128,
+        208
       ],
       "id": "20957da4-0c02-4017-a562-531746e8f6b7",
       "name": "Basic LLM Chain"
@@ -448,8 +449,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        2400,
-        304
+        2200,
+        432
       ],
       "id": "2dcc42d5-0a0f-489c-aa4c-1599e26722a6",
       "name": "Google Gemini Chat Model",
@@ -457,6 +458,31 @@
         "googlePalmApi": {
           "id": "XFoPJMb6fDnItKib",
           "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "=default",
+        "chatId": "=5516982316520@c.us",
+        "reply_to": "5516982316520@c.us",
+        "text": "={{ $json.text }}",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-waha.WAHA",
+      "typeVersion": 202411,
+      "position": [
+        2480,
+        208
+      ],
+      "id": "13cb3e66-c982-4d3c-996b-763edce034be",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "ASFsAIK5P6jCIPjx",
+          "name": "WAHA account"
         }
       }
     }
@@ -650,6 +676,17 @@
           }
         ]
       ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -664,7 +701,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "f4440797-7064-41e0-abac-9c2e2ba66b95",
+  "versionId": "2770576e-6bce-445a-bd50-fc933daf0dae",
   "triggerCount": 1,
   "shared": [
     {
