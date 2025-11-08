@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-08T20:30:19.000Z",
+  "updatedAt": "2025-11-08T20:38:12.000Z",
   "createdAt": "2025-11-08T19:31:34.039Z",
   "id": "rQpVJ8k0MyYYsxoG",
   "name": "BackupFLows",
@@ -128,7 +128,8 @@
           "id": "BKDlchQTpt8fMvVY",
           "name": "GitHub account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -161,7 +162,8 @@
           "id": "BKDlchQTpt8fMvVY",
           "name": "GitHub account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -343,7 +345,8 @@
         16
       ],
       "id": "881471d4-4b05-49c3-bb83-5fd81d574fa6",
-      "name": "Update row(s)"
+      "name": "Update row(s)",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -395,7 +398,34 @@
         208
       ],
       "id": "fde6b534-fed1-4c7d-aaab-674162e814bb",
-      "name": "Insert row"
+      "name": "Insert row",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "createdAt"
+            },
+            {
+              "fieldToAggregate": "updatedAt"
+            },
+            {
+              "fieldToAggregate": "content.name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        112
+      ],
+      "id": "d78109a4-4a98-4567-98b3-a827b0cc11f1",
+      "name": "Aggregate1"
     }
   ],
   "connections": {
@@ -502,6 +532,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -510,6 +547,49 @@
         [
           {
             "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row(s)": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate1",
             "type": "main",
             "index": 0
           }
@@ -529,7 +609,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "a1fa36b9-5e96-43fd-bb6e-1aa8efcbc5f6",
+  "versionId": "30265944-deb2-46c5-9230-c2bd3cd109d9",
   "triggerCount": 1,
   "shared": [
     {
