@@ -1,65 +1,52 @@
 {
-  "updatedAt": "2025-11-05T00:55:05.000Z",
-  "createdAt": "2025-11-04T14:35:53.719Z",
-  "id": "3FjxtC3iyTtNYa7t",
+  "updatedAt": "2025-11-05T00:55:07.000Z",
+  "createdAt": "2025-11-04T14:35:38.311Z",
+  "id": "57vtfJY7N2b2q8cd",
   "name": "My workflow",
   "active": false,
   "isArchived": true,
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
       "position": [
         0,
         0
       ],
-      "id": "da866729-1f05-442e-96d0-bb183e11a95e",
-      "name": "When clicking ‘Execute workflow’"
-    },
-    {
-      "parameters": {
-        "url": "https://www.skidrowreloaded.com/",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        208,
-        0
-      ],
-      "id": "f9bb53a4-5988-4f4c-b558-ffadfab5ab88",
-      "name": "HTTP Request",
-      "onError": "continueErrorOutput"
+      "id": "14bf3aa3-b1c0-4199-a46b-d71c789607b7",
+      "name": "Telegram Trigger",
+      "webhookId": "5dfc3858-2422-4fe8-adb0-ef402fcdbab7",
+      "credentials": {
+        "telegramApi": {
+          "id": "SAK2XbqNyghOaw93",
+          "name": "Telegram account"
+        }
+      }
     }
   ],
-  "connections": {
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    }
-  },
+  "connections": {},
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "pinData": {},
-  "versionId": "c023f67f-a075-4c7e-942f-c6aa8ed5a435",
+  "versionId": "7d073cb0-3339-4589-8dd3-29f6a84eec6c",
   "triggerCount": 0,
   "shared": [
     {
-      "updatedAt": "2025-11-04T14:35:53.758Z",
-      "createdAt": "2025-11-04T14:35:53.758Z",
+      "updatedAt": "2025-11-04T14:35:38.320Z",
+      "createdAt": "2025-11-04T14:35:38.320Z",
       "role": "workflow:owner",
-      "workflowId": "3FjxtC3iyTtNYa7t",
+      "workflowId": "57vtfJY7N2b2q8cd",
       "projectId": "TlfmJa4WqVZC43Rf"
     }
   ],
