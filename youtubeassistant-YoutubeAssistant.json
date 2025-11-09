@@ -1,0 +1,81 @@
+{
+  "updatedAt": "2025-11-08T22:57:40.000Z",
+  "createdAt": "2025-11-08T21:23:19.497Z",
+  "id": "D8wkq9g4Y1t3QWma",
+  "name": "YoutubeAssistant",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0194b73c-d243-4f34-8fe5-4b7b26c23db5",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "locationSelection": "coordinates",
+        "latitude": "-12.572328",
+        "longitude": "-55.751621"
+      },
+      "type": "n8n-nodes-base.openWeatherMap",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c83c6063-f382-476e-a371-fc357f47a7f0",
+      "name": "OpenWeatherMap",
+      "credentials": {
+        "openWeatherMapApi": {
+          "id": "x4jnFVXNFJrWj2OS",
+          "name": "OpenWeatherMap account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenWeatherMap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "de1f3c42-3f47-453f-9ebb-ccae146aa061",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2025-11-08T21:23:19.516Z",
+      "createdAt": "2025-11-08T21:23:19.516Z",
+      "role": "workflow:owner",
+      "workflowId": "D8wkq9g4Y1t3QWma",
+      "projectId": "TlfmJa4WqVZC43Rf"
+    }
+  ],
+  "tags": []
+}
