@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-08T20:37:56.000Z",
+  "updatedAt": "2025-11-08T23:06:45.000Z",
   "createdAt": "2025-11-07T21:34:42.855Z",
   "id": "xeK6OjKJPRQ3N0si",
   "name": "FaturaVivo",
@@ -13,7 +13,7 @@
         "session": "=default",
         "chatId": "=5516982316520@c.us",
         "reply_to": "5516982316520@c.us",
-        "text": "={{ $json.candidates[0].content.parts[0].text }}",
+        "text": "=**N8N BOT FATURA VIVO**\n{{ $json.candidates[0].content.parts[0].text }}",
         "requestOptions": {}
       },
       "type": "n8n-nodes-waha.WAHA",
@@ -184,7 +184,8 @@
         -80
       ],
       "id": "bd590223-c493-408f-a67f-898bc8961230",
-      "name": "Schedule Trigger"
+      "name": "Schedule Trigger",
+      "notesInFlow": false
     }
   ],
   "connections": {
@@ -251,7 +252,8 @@
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "Schedule Trigger": {
@@ -281,7 +283,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "f56a6153-25cf-484b-aed6-5e02f9ef8e90",
+  "versionId": "403cc46d-8bba-46a0-890a-8088ee632bf6",
   "triggerCount": 1,
   "shared": [
     {
