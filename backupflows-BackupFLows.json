@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-08T20:58:45.000Z",
+  "updatedAt": "2025-11-09T03:54:41.000Z",
   "createdAt": "2025-11-08T19:31:34.039Z",
   "id": "rQpVJ8k0MyYYsxoG",
   "name": "BackupFLows",
@@ -10,7 +10,9 @@
       "parameters": {
         "rule": {
           "interval": [
-            {}
+            {
+              "triggerAtHour": 1
+            }
           ]
         }
       },
@@ -290,7 +292,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         944,
-        -96
+        -112
       ],
       "typeVersion": 1
     },
@@ -468,7 +470,7 @@
         "session": "=default",
         "chatId": "=5516982316520@c.us",
         "reply_to": "5516982316520@c.us",
-        "text": "={{ $json.text }}",
+        "text": "=**N8N BOT GITHUB BACKUP**\n{{ $json.text }}",
         "requestOptions": {}
       },
       "type": "n8n-nodes-waha.WAHA",
@@ -485,6 +487,21 @@
           "name": "WAHA account"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Send Response",
+        "height": 672,
+        "width": 672
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2080,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "2373cede-3354-440c-a55d-2f7dca7962f9",
+      "name": "Sticky Note"
     }
   ],
   "connections": {
@@ -690,7 +707,10 @@
     }
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
   "staticData": {
     "node:Schedule Trigger": {
@@ -701,7 +721,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "de4e155c-c01d-4831-a9e0-d05bdf5312e5",
+  "versionId": "e9ae56a6-0ab9-43a9-9030-fa877926f028",
   "triggerCount": 1,
   "shared": [
     {
