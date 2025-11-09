@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-11-08T19:38:59.000Z",
+  "updatedAt": "2025-11-08T23:03:33.000Z",
   "createdAt": "2025-11-07T09:51:37.705Z",
   "id": "Cp6nud79FzhuVOSn",
   "name": "SkidrowReport",
@@ -48,7 +48,8 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 18
+              "triggerAtHour": 20,
+              "triggerAtMinute": 4
             }
           ]
         }
@@ -310,7 +311,7 @@
         "session": "=default",
         "chatId": "=5516982316520@c.us",
         "reply_to": "5516982316520@c.us",
-        "text": "={{ $json.text }}",
+        "text": "=**N8N BOT SKIDROW**\n{{ $json.text }}",
         "requestOptions": {}
       },
       "type": "n8n-nodes-waha.WAHA",
@@ -554,8 +555,26 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "pinData": {},
-  "versionId": "16320cdc-b9b0-4747-b2dc-5fdf29bbd720",
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2025-11-08T18:00:42.010-03:00",
+          "Readable date": "November 8th 2025, 6:00:42 pm",
+          "Readable time": "6:00:42 pm",
+          "Day of week": "Saturday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "08",
+          "Hour": "18",
+          "Minute": "00",
+          "Second": "42",
+          "Timezone": "America/Sao_Paulo (UTC-03:00)"
+        }
+      }
+    ]
+  },
+  "versionId": "9fee66f2-9ee1-45a8-8f4a-7e5b4b29110b",
   "triggerCount": 1,
   "shared": [
     {
